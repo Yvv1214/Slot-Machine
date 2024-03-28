@@ -1,8 +1,37 @@
+import random
 
+ROWS = 3
+COLS =3
 
 MAX_LINES = 3
 MAX_BET = 100
 MIN_BET = 1
+
+symbol_count = {
+     "A": 3,
+     "B": 6,
+     "C": 12,
+     "D": 12
+}
+
+
+def slot_spin(rows, cols, symbols):
+     all_symbols = []
+     for symbols, symbols_count in symbols.items():
+          for i in range(symbols_count):
+               all_symbols.append(symbols)
+
+     columns = []
+     for col in range(cols):
+        a_column =[]
+        current_symbols = all_symbols[:]
+        for row in range(rows):
+             value = random.choice(current_symbols)
+             current_symbols.remove(value)
+             
+        columns.append(a_column)
+
+     return columns
 
 
 def deposit():
@@ -52,8 +81,15 @@ def get_bet():
 def main():
     balance = deposit()
     lines = number_of_lines()
-    bet = get_bet()
-    total_bet = bet * lines
-    print(f'Balance ${balance} lines {lines} Bet Amount ${bet} Total Bet ${total_bet}')
+    while True:
+       bet = get_bet()
+       total_bet = bet * lines  
+
+       if total_bet > balance:
+            print(f'insufficient funds, your deposit ${balance}, your total bet ${total_bet}')
+       else:
+            break
+    
+    print(f'Balance ${balance} lines {lines} Bet Amount per line ${bet} Total Bet ${total_bet}')
 
 main()
