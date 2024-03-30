@@ -24,14 +24,25 @@ def slot_spin(rows, cols, symbols):
      columns = []
      for col in range(cols):
         a_column =[]
-        current_symbols = all_symbols[:]
+        current_symbols = all_symbols[:] #this makes all_symbols a copy for this function
         for row in range(rows):
              value = random.choice(current_symbols)
-             current_symbols.remove(value)
+             current_symbols.remove(value) #remove the random value from current symbols
              
         columns.append(a_column)
 
      return columns
+
+
+
+def print_slot_result(columns):
+     for row in range(len(columns[0])):
+        for i, column in enumerate(columns):
+             if i != len(columns) - 1:
+                  print(column[row], "|")
+             else:
+                print(column[row])
+
 
 
 def deposit():
