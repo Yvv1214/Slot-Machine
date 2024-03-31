@@ -7,7 +7,7 @@ MAX_LINES = 3
 MAX_BET = 100
 MIN_BET = 1
 
-symbol_count = {
+machine_symbols = {
      "A": 3,
      "B": 6,
      "C": 12,
@@ -16,16 +16,16 @@ symbol_count = {
 
 
 def slot_spin(rows, cols, symbols):
-     all_symbols = []
-     for symbols, symbols_count in symbols.items():
-          for i in range(symbols_count):
-               all_symbols.append(symbols)
+     displayed_symbols = []
+     for symbols, symbol_count in machine_symbols.items():#for key, value in dictionary
+          for i in range(symbol_count):
+               displayed_symbols.append(symbols)
 
-     columns = []
-     for col in range(cols):
+     columns = [] #store the result of the spin
+     for _ in range(cols): # '_' means anonymous variable
         a_column =[]
-        current_symbols = all_symbols[:] #this makes all_symbols a copy for this function
-        for row in range(rows):
+        current_symbols = displayed_symbols[:] #this makes a copy for displayed_symbol for this column
+        for _ in range(rows): #loop to generate rows for each column
              value = random.choice(current_symbols)
              current_symbols.remove(value) #remove the random value from current symbols
              
