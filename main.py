@@ -15,11 +15,13 @@ machine_symbols = {
 }
 
 
+# def winnings(cols, lines, bet, values):
+
+
 def slot_spin(rows, cols, symbols):
      displayed_symbols = []
-     for symbols, symbol_count in machine_symbols.items():#for key, value in dictionary
-          for i in range(symbol_count):
-               displayed_symbols.append(symbols)
+     for key, values in symbols.items():#for key, value in dictionary
+            displayed_symbols.extend(key * values) #A*3, B*6 etc
 
      columns = [] #store the result of the spin
      for _ in range(cols): # '_' means anonymous variable
@@ -28,6 +30,7 @@ def slot_spin(rows, cols, symbols):
         for _ in range(rows): #loop to generate rows for each column
              value = random.choice(current_symbols)
              current_symbols.remove(value) #remove the random value from current symbols
+             a_column.append(value)
              
         columns.append(a_column)
 
@@ -35,13 +38,15 @@ def slot_spin(rows, cols, symbols):
 
 
 
+
 def print_slot_result(columns):
      for row in range(len(columns[0])):
         for i, column in enumerate(columns):
              if i != len(columns) - 1:
-                  print(column[row], "|")
+                  print(column[row], end= "|") #pip operator space in between
              else:
-                print(column[row])
+                print(column[row], end='')
+        print()
 
 
 
@@ -102,5 +107,7 @@ def main():
             break
     
     print(f'Balance ${balance} lines {lines} Bet Amount per line ${bet} Total Bet ${total_bet}')
+    slots = slot_spin(ROWS, COLS, machine_symbols)
+    print_slot_result(slots)
 
 main()
