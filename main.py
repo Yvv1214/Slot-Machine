@@ -14,8 +14,24 @@ machine_symbols = {
      "D": 12
 }
 
+symbol_values = {
+     "A": 7,
+     "B": 5,
+}
 
-# def winnings(cols, lines, bet, values):
+
+def winnings(cols, lines, bet, values):
+     winnings = 0
+     for i in range(lines):
+          symbol = cols[0][i]
+          for x in cols:
+               symbol_to_check = x[i]
+               if symbol != symbol_to_check:
+                    break
+          else:
+               winnings += values[symbol] * bet
+     return winnings
+
 
 
 def slot_spin(rows, cols, symbols):
