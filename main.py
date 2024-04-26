@@ -22,6 +22,8 @@ symbol_values = {
 
 def winnings(cols, lines, bet, values):
      winnings = 0
+     winning_lines = []
+
      for i in range(lines):
           symbol = cols[0][i]
           for x in cols:
@@ -30,7 +32,9 @@ def winnings(cols, lines, bet, values):
                     break
           else:
                winnings += values[symbol] * bet
-     return winnings
+               winning_lines.append(lines)
+
+     return winnings, winning_lines
 
 
 
@@ -123,7 +127,12 @@ def main():
             break
     
     print(f'Balance ${balance} lines {lines} Bet Amount per line ${bet} Total Bet ${total_bet}')
+
     slots = slot_spin(ROWS, COLS, machine_symbols)
     print_slot_result(slots)
+
+    winnings, winning_lines = winnings(slots, lines, bet, symbol_values)
+    print(f"You won ${winnings}.")
+    print(f"You won on lines", *winning_lines) #*splat operator
 
 main()
