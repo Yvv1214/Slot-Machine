@@ -17,10 +17,12 @@ machine_symbols = {
 symbol_values = {
      "A": 7,
      "B": 5,
+     "C": 3,
+     "D": 1,
 }
 
 
-def winnings(cols, lines, bet, values):
+def your_winnings(cols, lines, bet, values):
      winnings = 0
      winning_lines = []
 
@@ -131,7 +133,7 @@ def main():
     slots = slot_spin(ROWS, COLS, machine_symbols)
     print_slot_result(slots)
 
-    winnings, winning_lines = winnings(slots, lines, bet, symbol_values)
+    winnings, winning_lines = your_winnings(slots, lines, bet, symbol_values)
     print(f"You won ${winnings}.")
     print(f"You won on lines", *winning_lines) #*splat operator
 
