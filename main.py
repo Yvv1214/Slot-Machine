@@ -116,8 +116,7 @@ def get_bet():
 
 
 
-def main():
-    balance = deposit()
+def spin(balance):
     lines = number_of_lines()
     while True:
        bet = get_bet()
@@ -136,5 +135,19 @@ def main():
     winnings, winning_lines = your_winnings(slots, lines, bet, symbol_values)
     print(f"You won ${winnings}.")
     print(f"You won on lines", *winning_lines) #*splat operator
+
+    return winnings - total_bet
+
+
+def main():
+     balance = deposit()
+     while True:
+          print(f"Current balance is ${balance}")
+          answer = input("Press enter to play (q to quit).")
+          if answer == "q":
+               break
+          balance += spin(balance)
+
+     print(f"You left with ${balance}")
 
 main()
